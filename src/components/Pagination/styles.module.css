@@ -33,3 +33,20 @@
 	background-color: var(--blue);
 	color: white;
 }
+
+.previous,.next {
+	background-color: blue;
+	padding: 6px;
+	color:white;
+	box-shadow: var(--box-shadow);
+	border-radius: 5px;	
+	cursor: pointer;
+}
+
+.disabled {
+	background-color: grey;
+	padding: 6px;
+	border-radius: 5px;	
+	color:white;
+	cursor: not-allowed;
+}
