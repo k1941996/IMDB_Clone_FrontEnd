@@ -21,7 +21,7 @@ const Genre = (props) => {
 						<input
 							className={styles.genre_input}
 							type="checkbox"
-							value={genre}
+							checked={filterGenre.includes(genre)}
 							onChange={onChange}
 						/>
 						<p className={styles.genre_label}>{genre}</p>
