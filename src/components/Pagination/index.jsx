@@ -1,11 +1,13 @@
 import { useState } from "react";
 import styles from "./styles.module.css";
+;
 
-const Pagination = ({ page, total, limit, setPage }) => {
+const Pagination = (props) => {
+	const { page, total, limit, setPage } =  props ;
 	const totalPages = Math.ceil(total / limit);
 
-	const onClick = (newPage) => {
-		setPage(newPage + 1);
+	const onClickPage = (pageNo) => {
+		setPage(pageNo);
 	};
 
 	const navigateToPreviousPage = () => {
@@ -19,6 +21,18 @@ const Pagination = ({ page, total, limit, setPage }) => {
 			setPage(page + 1)
 	}
 
+	const handleOnClick = (index) =>{
+		let pageNo = 0;
+		if(page>5){
+			pageNo = page-4+index;
+			console.log(pageNo);
+			onClickPage(pageNo);
+		}
+		else {
+			onClickPage(index+1);
+		}
+	}
+
 	return (
 		<div className={styles.container}>
 			<div
@@ -26,17 +40,17 @@ const Pagination = ({ page, total, limit, setPage }) => {
 				disabled={page === 1}
 				className={page > 1 ? styles.previous : styles.disabled}>Previous</div>
 			{totalPages > 0 &&
-				[...Array(totalPages)].map((val, index) => (
+				[...Array(5)].map((val, index) => (
 					<button
-						onClick={() => onClick(index)}
+						onClick={()=>handleOnClick(index)}
 						className={
-							page === index + 1
+							page === index + 1 ||  (page > 5 && page === page-4+index )
 								? `${styles.page_btn} ${styles.active}`
 								: styles.page_btn
 						}
 						key={index}
 					>
-						{index + 1}
+						{ page-5> 0 ? page-4+index : index + 1}
 					</button>
 				))}
 			<div onClick={navigateToNextPage} 

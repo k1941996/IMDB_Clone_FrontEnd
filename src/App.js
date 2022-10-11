@@ -17,6 +17,7 @@ function App() {
 	const [search, setSearch] = useState("");
 
 	const getAllMovies = async () => {
+		console.log(filterGenre)
 		try {
 			const url = `${base_url}?page=${page}&sort=${sort.sort},${
 				sort.order
@@ -49,7 +50,7 @@ function App() {
 			<div className="container">
 				<div className="head">
 					<img src="./images/logo.png" alt="logo" className="logo" />
-					<Search setSearch={(abc) => setSearch(abc)}  onPressEnter={handleEnterClick} />
+					<Search setSearch={(abc) => setSearch(abc)}  onPressEnter={handleEnterClick} getAllMovies={getAllMovies} />
 				</div>
 				<div className="body">
 					<div className="table_container">
@@ -67,6 +68,7 @@ function App() {
 							filterGenre={filterGenre}
 							genres={obj.genres ? obj.genres : []}
 							setFilterGenre={(genre) => setFilterGenre(genre)}
+							reset={()=>setFilterGenre([]) }
 						/>
 					</div>
 				</div>

@@ -1,6 +1,7 @@
 import styles from "./styles.module.css";
 
-const Genre = ({ genres, filterGenre, setFilterGenre }) => {
+const Genre = (props) => {
+	const { genres, filterGenre, setFilterGenre } = props;
 	const onChange = ({ currentTarget: input }) => {
 		if (input.checked) {
 			const state = [...filterGenre, input.value];
@@ -26,6 +27,7 @@ const Genre = ({ genres, filterGenre, setFilterGenre }) => {
 						<p className={styles.genre_label}>{genre}</p>
 					</div>
 				))}
+			<button onClick={props.reset}>Reset</button>
 			</div>
 		</div>
 	);
