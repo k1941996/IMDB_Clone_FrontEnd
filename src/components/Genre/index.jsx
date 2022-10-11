@@ -2,12 +2,12 @@ import styles from "./styles.module.css";
 
 const Genre = (props) => {
 	const { genres, filterGenre, setFilterGenre } = props;
-	const onChange = ({ currentTarget: input }) => {
-		if (input.checked) {
-			const state = [...filterGenre, input.value];
+	const onChange = (e) => {
+		if (e.target.checked) {
+			const state = [...filterGenre, e.target.name];
 			setFilterGenre(state);
 		} else {
-			const state = filterGenre.filter((val) => val !== input.value);
+			const state = filterGenre.filter((val) => val !== e.target.name);
 			setFilterGenre(state);
 		}
 	};
@@ -16,12 +16,13 @@ const Genre = (props) => {
 		<div className={styles.container}>
 			<h1 className={styles.heading}>Filter By Genre</h1>
 			<div className={styles.genre_container}>
-				{genres.map((genre) => (
+				{genres.map((genre,index) => (
 					<div className={styles.genre} key={genre}>
 						<input
 							className={styles.genre_input}
 							type="checkbox"
-							checked={filterGenre.includes(genre)}
+							name={genre}
+							checked={filterGenre.includes(genre)?true:false}
 							onChange={onChange}
 						/>
 						<p className={styles.genre_label}>{genre}</p>
